@@ -1,0 +1,10 @@
+.devListStyle span{
+    width: 100px;
+    display: inline-block;
+}
+.devListStyle a{
+    margin-left: 10px;
+}
+.devListStyle .locationStyle{
+    margin: 10px 0;
+}

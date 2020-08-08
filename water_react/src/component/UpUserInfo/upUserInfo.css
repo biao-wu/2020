@@ -1,0 +1,12 @@
+.userInfo div input{
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 4px;
+}
+.userInfo div textarea{
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 4px;
+}

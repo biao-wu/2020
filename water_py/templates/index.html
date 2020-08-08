@@ -1,0 +1,1078 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/default.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+</head>
+
+<body>
+<div class="index page-top" id="index">
+    <section class="section clearfix">
+        <div class="left f-l">
+            <p class="one-title title-left">饮水水质监测</p>
+            <!-- 顶部导航 -->
+            <div class="top">
+                <div class="station-all-text-par">
+                    <span class="item station-all-text">站点总数：</span>
+                    <p class="item number number-1">
+                        <span class="number-text">{{ siteAllONE }}</span>
+                    </p>
+                    <p class="item number number-2">
+                        <span class="number-text">{{ siteAllTWO }}</span>
+                    </p>
+                    <p class="item number number-3">
+                        <span class="number-text">个</span>
+                    </p>
+                </div>
+                <div class="station-box-par">
+                    <div class="item station-box online">
+                        <div class="y-c online-text-box">
+                            <p class="number-title">{{ siteON }}个</p>
+                            <p>正常站点数</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="station-box-par">
+                    <div class="item station-box outline">
+                        <div class="y-c outline-text-box">
+                            <p class="number-title">{{ siteOFF }}个</p>
+                            <p>离线站点数</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="station-box-par">
+                    <div class="item station-box catch">
+                        <div class="y-c catch-text-box">
+                            <p class="number-title">{{ siteExcept }}个</p>
+                            <p>异常站点数</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+            <!-- 地图部分 -->
+            <div id="map" class="map-box"></div>
+            <!-- end -->
+        </div>
+        <!-- 右边图表内容 -->
+        <div class="right f-r">
+            <!-- 顶部标题 -->
+            <p class="one-title title-right">对比数据分析</p>
+            <!-- end -->
+            <!-- 图表部分 -->
+            <div class="two-title-box clearfix">
+                {#                <div class="station-box f-r">#}
+                {#                    <p class="station-a station">A站点名称</p>#}
+                {#                    <p class="station-b station">B站点名称</p>#}
+                {#                </div>#}
+                <div class="two-title">
+                    <p class="text">余氯实时数据监控</p>
+                </div>
+            </div>
+
+            <div class="chart-box" id="chart-1"></div>
+
+            <div class="two-title-box clearfix">
+                {#                <div class="station-box f-r">#}
+                {#                    <p class="station-a station">A站点名称</p>#}
+                {#                    <p class="station-b station">B站点名称</p>#}
+                {#                </div>#}
+                <div class="two-title">
+                    <p class="text">PH数据对比</p>
+                </div>
+            </div>
+
+            <div class="chart-box" id="chart-2"></div>
+
+            <div class="two-title-box clearfix">
+                {#                <div class="station-box f-r">#}
+                {#                    <p class="station-a station">A站点名称</p>#}
+                {#                    <p class="station-b station">B站点名称</p>#}
+                {#                </div>#}
+                <div class="two-title">
+                    <p class="text" id="title">浊度实时数据监控</p>
+                </div>
+            </div>
+
+            <div class="chart-box" id="chart-3"></div>
+
+            <div class="two-title-box clearfix">
+                {#                <div class="station-box f-r">#}
+                {#                    <p class="station-a station">A站点名称</p>#}
+                {#                    <p class="station-b station">B站点名称</p>#}
+                {#                </div>#}
+                <div class="two-title">
+                    <p class="text">溶解氧数据对比</p>
+                </div>
+            </div>
+
+            <div class="chart-box" id="chart-4"></div>
+
+            <div class="two-title-box clearfix">
+                {#                <div class="station-box f-r">#}
+                {#                    <p class="station-a station">A站点名称</p>#}
+                {#                    <p class="station-b station">B站点名称</p>#}
+                {#                </div>#}
+                <div class="two-title">
+                    <p class="text">电导率数据对比</p>
+                </div>
+            </div>
+
+            <div class="chart-box" id="chart-5"></div>
+
+            <!-- end -->
+        </div>
+        <!-- end -->
+    </section>
+
+    <!-- 页面底部内容 -->
+    <div class="footer clearfix">
+        <div class="left f-l">
+            <!-- 顶部导航栏 -->
+            <div class="title-box-par">
+                <div class="title-box">
+                    <span class="more" id="moreVideoAdress"></span>
+                    <div class="left-item-box">
+                        <p class="left-text">视频监控</p>
+                        <p class="left-item">以下是视频监控</p>
+                    </div>
+                </div>
+                <ul class="more-list more-list-none " id="moreList">
+                    <li class="li left-item">监控1</li>
+                    <li class="li left-item">监控2</li>
+                    <li class="li left-item">监控3</li>
+                    <li class="li left-item">监控4</li>
+                </ul>
+            </div>
+            <!-- end -->
+            <!-- 底部图片视频布尔费 -->
+            <ul class="video-box">
+                <li class="li">
+                    <div class="media-box">
+                        <div class="media">
+                            <img
+                                    src="{% static 'images/test1.jpg' %}"
+                                    width=398
+                                    height=262
+                                    alt=""
+                            />
+                        </div>
+                    </div>
+                    <p class="text">xxx水质监测站点</p>
+                </li>
+                <li class="li">
+                    <div class="media-box">
+                        <div class="media">
+                            <img
+                                    src="{% static 'images/test2.jpg' %}"
+                                    width=398
+                                    height=262
+                                    alt=""
+                            />
+                        </div>
+                    </div>
+                    <p class="text">xxx居民小区监测站</p>
+                </li>
+                <li class="li">
+                    <div class="media-box">
+                        <div class="media">
+                            <img
+                                    src="{% static 'images/test3.jpg' %}"
+                                    width=398
+                                    height=262
+                                    alt=""
+                            />
+                        </div>
+                    </div>
+                    <p class="text">xxx水质监测站</p>
+                </li>
+            </ul>
+            <!-- end -->
+        </div>
+        <div class="right f-r">
+            <!-- 顶部导航栏 -->
+            <div class="title-box ">
+                <p class="left-text" style="color:#00e5ff">站点最新水质质量分析</p>
+
+                <div class="drop-box item month">
+                    5月
+                    <span class="drop item"></span>
+
+                </div>
+            </div>
+            <!-- end -->
+            <!-- 表格部分 -->
+            <div class="table-box">
+                <table class="table" cellspacing="0" cellpadding="0">
+                    <tr class="thead">
+                        <td>站点名称</td>
+                        <td>余氯(mg/L) 合格率</td>
+                        <td>pH 合格率</td>
+                        <td>浊度(NTU) 合格率</td>
+                        <td>质量分析</td>
+                    </tr>
+                    {% for foo in water_obj %}
+                        <tr class="tbody">
+                            <td>{{ foo.siteName }}</td>
+                            <td>{{ foo.chlorine_data }}</td>
+                            <td>{{ foo.ph_data }}</td>
+                            <td>{{ foo.NTU_data }}</td>
+                            <td>良好</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <!-- end -->
+        </div>
+    </div>
+</div>
+<!-- js -->
+
+<!-- <script
+  type="text/javascript"
+  src="http://api.map.baidu.com/api?type=webgl&v=1.0&ak=DCoIgWlQutq6T0ZoGHhhXLNSYuzA0Clp"
+></script> -->
+<script src="{% static 'js/lib/jquery/jquery-1.12.4.min.js' %}"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&amp;ak=FyI0NOQh8s1Pj8lQ82THbXVY"></script>
+<script src="{% static 'js/lib/echarts/index.js' %}"></script>
+
+
+{#<script src="{% static 'js/cityMap.js' %}"></script>#}
+
+<script>
+    var chlorine_list = [];
+    var PH_list = [];
+    var NTU_list = [];
+    var tem_list = [];
+    var ele_list = [];
+    var oxygen_list = [];
+    var time;
+    var hours_list = [];
+    var location_list = [];
+    var site_location;
+    var site_data;
+
+    $.ajax({
+            type: "get",
+            url: "/map",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                site_data = data;
+                for (var x in data.location) {
+                    site_id = data.location[x].id;
+                    {#console.log(site_id);#}
+                    loadData(site_id, data.data1, data.location)
+                }
+
+
+            }
+        }
+    );
+
+    function loadData(locid, data, location) {
+        location_list = location;
+        var content1;
+
+        function unique(arr) {
+            var x = new Set(arr);
+            return [...x]
+        }
+
+
+        var PointArr = [];
+
+        function makeToMap(arr) {
+            for (var i in arr) {
+                site_id = arr[i].id;
+                {#console.log(site_id);#}
+                {#site_location = arr[i].location;#}
+                site_location = arr[i];
+                if (site_location['status'] === 1) {
+                    site_type = "online"
+                } else if (site_location['status'] === 0) {
+                    site_type = "outline"
+                } else {
+                    site_type = "catch"
+                }
+                PointArr.push({
+                    log: site_location['location'][0],
+                    lat: site_location['location'][1],
+                    type: site_type,
+                    id: site_location['id']
+                });
+                {#console.log(site_location['location'])#}
+            }
+        }
+
+        makeToMap(location_list);
+        var map = new BMap.Map("map", {enableMapClick: false});
+        var point = new BMap.Point(site_location['location'][0], site_location['location'][1]);
+        map.centerAndZoom(point, 12);
+        map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+        // 创建坐标点
+        var companyIcon1 = new BMap.Icon(
+            "/static/images/online-point.png",
+            new BMap.Size(36, 41)
+        );
+        var companyIcon2 = new BMap.Icon(
+            "/static/images/outline-point.png",
+            new BMap.Size(36, 41)
+        );
+        var companyIcon3 = new BMap.Icon(
+            "/static/images/catch-point.png",
+            new BMap.Size(86, 98)
+        );
+
+        PointArr.forEach(function (item, index) {
+            var icon = "";
+            switch (item.type) {
+                case "online":
+                    icon = companyIcon1;
+                    break;
+
+                case "outline":
+                    icon = companyIcon2;
+                    break;
+
+                case "catch":
+                    icon = companyIcon3;
+                    break;
+
+                default:
+                    break;
+            }
+
+            var marker = new BMap.Marker(new BMap.Point(item.log, item.lat), {
+                icon: icon
+            });
+            map.addOverlay(marker); // 地图添加标点
+            var mapTip =
+                '<div class="map-tip-par"><div class="map-tip-box map-tip-' +
+                item.type +
+                '">';
+            var content2 = mapTip + content1;
+            var opts1 = {width: 700};
+            var infoWindow = new BMap.InfoWindow(content2, opts1);
+
+            marker.addEventListener("click", function (e) {
+                console.log(item.id);
+                if (item.type === "catch") {
+                    $("#index").addClass("infoWindow-catch");
+                } else {
+                    $("#index").removeClass("infoWindow-catch");
+                }
+                var content;
+                if (item.id === 3) {
+                    for (var k in site_data.data3) {
+                        site_name = site_data.data3[k].siteName;
+                        chlorine = site_data.data3[k].chlorine;
+                        chlorine_list.push(chlorine);
+                        PH = site_data.data3[k].PH;
+                        PH_list.push(PH);
+                        NTU = site_data.data3[k].NTU;
+                        NTU_list.push(NTU);
+                        tem = site_data.data3[k].tem;
+                        tem_list.push(tem);
+                        ele = site_data.data3[k].ele;
+                        ele_list.push(ele);
+                        oxygen = site_data.data3[k].oxygen;
+                        oxygen_list.push(oxygen);
+                        time = site_data.data3[k].time;
+                        status = site_data.data3[k].status;
+                        if (time.split("-")[1] in hours_list) {
+                            hours_list.pop()
+                        } else {
+                            hours_list.push(time.split("-")[1]);
+                        }
+                    }
+                    content =
+                        '<div class="title-box">' +
+                        '<span class="item">站点名称：' + site_name + '</span>' +
+                        '<span class="item time" style="font-size: 13px">上报时间：' + time + '</span>' +
+                        "</div>" +
+                        '<div class="time-box">' +
+                        '<span class="item">余氯：' + chlorine + 'mg/L</span>' +
+                        '<span class="item"> PH：' + PH + '</span>' +
+                        '<span class="item">浊度：' + NTU + '</span>' +
+                        '<span class="item">温度：' + tem + '℃</span>' +
+                        '<span class="item"> 溶解氧：' + oxygen + 'mg/L</span>' +
+                        '<span class="item">电导率：' + ele + 's/m</span>' +
+                        "</div>" +
+                        '<div class="btn-box">' +
+                        '<span class="item one">实时数据监控</span>' +
+                        '<span class="item two" id = "data1">对比数据分析</span>' +
+                        "</div>" +
+                        "<span class='arrow'></span>" +
+                        "</div>" +
+                        "</div>"
+                } else if (item.id === 1) {
+
+                    for (var k in site_data.data1) {
+                        site_name = site_data.data1[k].siteName;
+                        chlorine = site_data.data1[k].chlorine;
+                        chlorine_list.push(chlorine);
+                        PH = site_data.data1[k].PH;
+                        PH_list.push(PH);
+                        NTU = site_data.data1[k].NTU;
+                        NTU_list.push(NTU);
+                        tem = site_data.data1[k].tem;
+                        tem_list.push(tem);
+                        ele = site_data.data1[k].ele;
+                        ele_list.push(ele);
+                        oxygen = site_data.data1[k].oxygen;
+                        oxygen_list.push(oxygen);
+                        time = site_data.data1[k].time;
+                        status = site_data.data1[k].status;
+                        if (time.split("-")[1] in hours_list) {
+                            hours_list.pop()
+                        } else {
+                            hours_list.push(time.split("-")[1]);
+                        }
+                    }
+                    content =
+                        '<div class="title-box">' +
+                        '<span class="item">站点名称：' + site_name + '</span>' +
+                        '<span class="item time" style="font-size: 13px">上报时间：' + time + '</span>' +
+                        "</div>" +
+                        '<div class="time-box">' +
+                        '<span class="item">余氯：' + chlorine + 'mg/L</span>' +
+                        '<span class="item"> PH：' + PH + '</span>' +
+                        '<span class="item">浊度：' + NTU + '</span>' +
+                        '<span class="item">温度：' + tem + '℃</span>' +
+                        '<span class="item"> 溶解氧：' + oxygen + 'mg/L</span>' +
+                        '<span class="item">电导率：' + ele + 's/m</span>' +
+                        "</div>" +
+                        '<div class="btn-box">' +
+                        '<span class="item one">实时数据监控</span>' +
+                        '<span class="item two" id = "data1">对比数据分析</span>' +
+                        "</div>" +
+                        "<span class='arrow'></span>" +
+                        "</div>" +
+                        "</div>"
+                } else if (item.id === 2) {
+
+                    for (var k in site_data.data2) {
+                        site_name = site_data.data2[k].siteName;
+                        chlorine = site_data.data2[k].chlorine;
+                        chlorine_list.push(chlorine);
+                        PH = site_data.data2[k].PH;
+                        PH_list.push(PH);
+                        NTU = site_data.data2[k].NTU;
+                        NTU_list.push(NTU);
+                        tem = site_data.data2[k].tem;
+                        tem_list.push(tem);
+                        ele = site_data.data2[k].ele;
+                        ele_list.push(ele);
+                        oxygen = site_data.data2[k].oxygen;
+                        oxygen_list.push(oxygen);
+                        time = site_data.data2[k].time;
+                        status = site_data.data2[k].status;
+                        if (time.split("-")[1] in hours_list) {
+                            hours_list.pop()
+                        } else {
+                            hours_list.push(time.split("-")[1]);
+                        }
+                    }
+                    content =
+                        '<div class="title-box">' +
+                        '<span class="item">站点名称：' + site_name + '</span>' +
+                        '<span class="item time" style="font-size: 13px">上报时间：' + time + '</span>' +
+                        "</div>" +
+                        '<div class="time-box">' +
+                        '<span class="item">余氯：' + chlorine + 'mg/L</span>' +
+                        '<span class="item"> PH：' + PH + '</span>' +
+                        '<span class="item">浊度：' + NTU + '</span>' +
+                        '<span class="item">温度：' + tem + '℃</span>' +
+                        '<span class="item"> 溶解氧：' + oxygen + 'mg/L</span>' +
+                        '<span class="item">电导率：' + ele + 's/m</span>' +
+                        "</div>" +
+                        '<div class="btn-box">' +
+                        '<span class="item one">实时数据监控</span>' +
+                        '<span class="item two" id = "data1">对比数据分析</span>' +
+                        "</div>" +
+                        "<span class='arrow'></span>" +
+                        "</div>" +
+                        "</div>"
+                }
+
+                var content2 = mapTip + content;
+                var opts1 = {width: 700};
+                var infoWindow = new BMap.InfoWindow(content2, opts1);
+                marker.openInfoWindow(infoWindow);
+                var id = document.getElementById("data1");
+                id.onclick = function () {
+                    document.getElementById("title").innerText = site_name+'水质参数';
+                    myChart3.setOption({
+                        title: {
+                            {#text: site_name+'水质参数'#}
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            //哪些曲线
+                            data: this.dataList
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                magicType: {type: ['line', 'bar']},
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: unique(hours_list)
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                name: "余氯",
+                                type: 'line',
+                                data: chlorine_list
+                            },
+                            {
+                                name: "pH值",
+                                type: 'line',
+                                data: PH_list
+                            },
+                            {
+                                name: "浑浊度",
+                                type: 'line',
+                                data: NTU_list
+                            },
+                            {
+                                name: "溶解氧",
+                                type: 'line',
+                                data: oxygen_list
+                            },
+                            {
+                                name: "电导率",
+                                type: 'line',
+                                data: ele_list
+                            }
+                        ]
+                    });
+                };
+            });
+        });
+
+    }
+
+
+</script>
+
+
+<script>
+    var isMoreList = false;
+    $("#moreVideoAdress").on("click", function () {
+        if (isMoreList) {
+            isMoreList = false;
+            $("#moreList").addClass("more-list-none");
+        } else {
+            isMoreList = true;
+            $("#moreList").removeClass("more-list-none");
+        }
+    });
+    // echarts图表
+    var myChart1 = echarts.init(document.getElementById("chart-1"));
+    var myChart2 = echarts.init(document.getElementById("chart-2"));
+    var myChart3 = echarts.init(document.getElementById("chart-3"));
+    var myChart4 = echarts.init(document.getElementById("chart-4"));
+    var myChart5 = echarts.init(document.getElementById("chart-5"));
+    $.ajax({
+        type: "get",
+        url: "/echarts",
+        dataType: "json",
+        success: function (data) {
+
+            // 指定图表的配置项和数据
+            var option1 = {
+                grid: {
+                    top: 20,
+                    bottom: 30,
+                    right: 20
+                    // left: '10%'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: data.name
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: data.key
+                },
+                yAxis: {
+                    axisLabel: {
+                        formatter: '{value} mg/L'
+                    }
+                },
+                series: [
+                    {
+                        name: data.name[0],
+                        data: data.value_c1,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(220, 205, 43)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgb(220, 205, 43,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+
+                    },
+                    {
+                        name: data.name[1],
+                        data: data.value_c2,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(151, 218, 245)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgba(151, 218, 245,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            };
+            var option2 = {
+                grid: {
+                    top: 20,
+                    bottom: 30,
+                    right: 20
+                    // left: '10%'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: data.name
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: data.key
+                },
+                yAxis: {
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                series: [
+                    {
+                        name: data.name[0],
+                        data: data.val_ph1,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(220, 205, 43)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgb(220, 205, 43,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+
+                    },
+                    {
+                        name: data.name[1],
+                        data: data.val_ph2,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(151, 218, 245)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgba(151, 218, 245,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            };
+            var option3 = {
+                grid: {
+                    top: 20,
+                    bottom: 30,
+                    right: 20
+                    // left: '10%'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: data.name
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: data.key
+                },
+                yAxis: {
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                series: [
+                    {
+                        name: data.name[0],
+                        data: data.val_ntu1,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(220, 205, 43)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgb(220, 205, 43,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+
+                    },
+                    {
+                        name: data.name[1],
+                        data: data.val_ntu2,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(151, 218, 245)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgba(151, 218, 245,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            };
+
+            var option4 = {
+                grid: {
+                    top: 20,
+                    bottom: 30,
+                    right: 20
+                    // left: '10%'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: data.name
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: data.key
+                },
+                yAxis: {
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                series: [
+                    {
+                        name: data.name[0],
+                        data: data.val_oxygen1,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(220, 205, 43)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgb(220, 205, 43,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+
+                    },
+                    {
+                        name: data.name[1],
+                        data: data.val_oxygen2,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(151, 218, 245)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgba(151, 218, 245,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            };
+            var option5 = {
+                grid: {
+                    top: 20,
+                    bottom: 30,
+                    right: 20
+                    // left: '10%'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: data.name
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: data.key
+                },
+                yAxis: {
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                series: [
+                    {
+                        name: data.name[0],
+                        data: data.val_ele1,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(220, 205, 43)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgb(220, 205, 43,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+
+                    },
+                    {
+                        name: data.name[1],
+                        data: data.val_ele2,
+                        type: "line",
+                        showSymbol: false,
+                        smooth: true,
+                        lineStyle: {
+                            color: "rgb(151, 218, 245)"
+                        },
+                        areaStyle: {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {
+                                        offset: 0,
+                                        color: "rgba(151, 218, 245,0.7)" // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: "rgba(255, 255, 255,0)" // 100% 处的颜色
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart1.setOption(option1);
+            myChart2.setOption(option2);
+            myChart3.setOption(option3);
+            myChart4.setOption(option4);
+            myChart5.setOption(option5);
+        },
+        error: function () {
+            {#alert('Error: ajax 请求出错！')#}
+        }
+    });
+
+</script>
+</body>
+</html>

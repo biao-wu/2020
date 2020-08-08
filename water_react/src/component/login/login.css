@@ -1,0 +1,16 @@
+html,body,#root,.allScroll{
+    height:100%;
+    width:100%;
+}
+.allScroll{
+    background-color: black;
+}
+.allScroll .ant-form-item-label label{
+    color:white;
+}
+.allScroll Form{
+    width:300px;
+}
+.allScroll #basic{
+    margin-top:200px;
+}
