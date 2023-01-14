@@ -5,7 +5,7 @@ diff-match-patch==20181111
 Django==2.1.4
 django-cors-headers==3.2.1
 django-import-export==2.0.2
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 djangorestframework-stubs==1.1.0
 et-xmlfile==1.0.1
